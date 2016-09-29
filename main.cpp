@@ -1,14 +1,27 @@
 #include <iostream>
-#include "UInt.h"
+#include <chrono>
+#include <cassert>
+#include "Int.h"
+
 
 int main() {
-    UInt i("000020033351252525235235235423523522222222222221111");
-    UInt a1("123");
-    UInt a2("333");
-    UInt a3("987");
-    UInt a4 = a2 + a3;
-    std::cout << i.to_string() << "\n";
-    std::cout << (a1+a2).to_string() << "\n";
-    std::cout << a4.to_string() << "\n";
+    vector<int> lengths = {250, 500, 1000, 2000, 4000, 8000, 16000};
+    for (auto length : lengths) {
+        string xstr;
+        xstr.reserve(length+1);
+        xstr += "1";
+        for (int i = 0; i < length; ++i) {
+            xstr += (rand() % 10) + '0';
+        }
+        Int x(xstr);
+        std::chrono::steady_clock::time_point t0 = std::chrono::steady_clock::now();
+        Int y1 = karatsuba(x, x);
+        std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
+        Int y2 = x * x;
+        std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
+        assert(y1 == y2);
+        std::cout << "karatsuba uses " << (std::chrono::duration_cast<std::chrono::milliseconds>(t1-t0)).count() << "\n";
+        std::cout << "grade school uses " << (std::chrono::duration_cast<std::chrono::milliseconds>(t2-t1)).count() << "\n";
+    }
     return 0;
 }

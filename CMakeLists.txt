@@ -3,5 +3,5 @@ project(karatsuba)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp UInt.h)
+set(SOURCE_FILES main.cpp Int.h)
 add_executable(karatsuba ${SOURCE_FILES})
