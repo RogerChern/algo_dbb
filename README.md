@@ -19,6 +19,7 @@ make
 测试方法：输入一个随机生成的长度为 n digits的高精度数，n=250, 500, 1000, 2000, 4000, 8000, 16000，分别利用 karatsuba 算法和 grade school 算法计算其平方，记录两个算法耗时。
 
 测试结果：
+
 |n  |karatsuba(ms)|ratio1|grade school(ms)|ratio2|
 |---|---      |---         |---|---|
 |250|104|-|3|-|
